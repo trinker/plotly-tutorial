@@ -28,7 +28,7 @@ import plotly.express as px
 from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 #init_notebook_mode(connected=True)
 # Use Plotly locally
-cf.go_offline()
+#cf.go_offline()
 
 
 # ### Basics
@@ -57,11 +57,13 @@ import plotly.graph_objects as go
 
 # Use included Google price data to make one plot
 df_stocks = px.data.stocks()
-px.line(df_stocks, x='date', y='GOOG', labels={'x':'Date', 'y':'Price'})
+fig = px.line(df_stocks, x='date', y='GOOG', labels={'x':'Date', 'y':'Price'})
 
 # Make multiple line plots
 px.line(df_stocks, x='date', y=['GOOG','AAPL'], labels={'x':'Date', 'y':'Price'},
-       title='Apple Vs. Google')
+       title='Apple Vs. Google').show()
+
+
 
 # Create a figure to which I'll add plots
 fig = go.Figure()
@@ -77,6 +79,8 @@ fig.add_trace(go.Scatter(x=df_stocks.date, y=df_stocks.GOOG,
 # Further style the figure
 # fig.update_layout(title='Stock Price Data 2018 - 2020',
 #                    xaxis_title='Price', yaxis_title='Date')
+
+fig.show()
 
 # Go crazy styling the figure
 fig.update_layout(
@@ -112,7 +116,7 @@ fig.update_layout(
     plot_bgcolor='white'
 )
 
-
+fig.show()
 # ### Bar Charts
 
 # In[ ]:
